@@ -35,22 +35,9 @@ const Login=()=>{
         reset
     } = useForm({ defaultValues });
 
-    // const handleSubmitReg = (event) => {
-    //     event.preventDefault();
-    //     // Add your form submission logic here
-    //     console.log('Form submitted!');
-        
-    //    return <Navigate to="/register"/>
-    //     // Navigate to the Register component after form submission
-    //     // history.push('/register');
-        
-    // };
-
     const onSubmit = (data) => {
         data.value && show();
         console.log(data);
-        
-        // setUsername(data.username)
         navigate('/home')
 
         reset();
@@ -95,10 +82,10 @@ const Login=()=>{
                  </>
                 )}
                         />
-                <Button label="Sign-in" type="submit" icon="pi pi-check" />
+                <Button label="כניסה" type="submit" icon="pi pi-check" />
             </form>
             
-                <Button label="Sign-up" onClick={()=>{navigate('/register')}} icon="pi pi-check" />
+                <Button label="הרשמה" onClick={()=>{navigate('/register')}} icon="pi pi-check" />
             
             
 </div>

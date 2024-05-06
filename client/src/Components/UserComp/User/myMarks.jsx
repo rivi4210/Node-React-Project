@@ -16,10 +16,6 @@ const MyMarks = ({ user }) => {
         refetch
     } = useGetExamQuery(user._id)
 
-    // useEffect(() => {
-    //     ProductService.getProductsMini().then(data => setProducts(data));
-    // }, []);
-
     return (
         <>
             {console.log(marks)}
@@ -28,9 +24,9 @@ const MyMarks = ({ user }) => {
             <div className="card">
 
                 <DataTable value={marks} tableStyle={{ minWidth: '50rem' }}>
-                    <Column field="category" header="Category"></Column>
-                    <Column field="level" header="Level"></Column>
-                    <Column field="mark" header="Mark"></Column>
+                    <Column field="category" header="קטגוריה"></Column>
+                    <Column field="level" header="שלב"></Column>
+                    <Column field="mark" header="ציון"></Column>
                 </DataTable>
             </div></>
     )

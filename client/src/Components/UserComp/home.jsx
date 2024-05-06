@@ -48,15 +48,7 @@ const Home=()=>{
     
         return (
             <>
-            
-            <div >
-                <Menubar 
-                model={items} 
-            end={<SignOut/>}/> 
-            <Outlet/>
-           
-           
-      </div>
+            <div><Menubar model={items} end={<SignOut/>}/> <Outlet/></div>
             </>
         )
     }

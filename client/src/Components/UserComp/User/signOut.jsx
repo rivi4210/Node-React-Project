@@ -19,7 +19,7 @@ const SignOut = () => {
     const confirm = (event) => {
         confirmPopup({
             target: event.currentTarget,
-            message: 'Do you want to log out from this site?',
+            message: '?אתה רוצה לצאת',
             icon: 'pi pi-info-circle',
             defaultFocus: 'reject',
             accept,

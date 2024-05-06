@@ -35,11 +35,9 @@ const UpdateUserUser = ({ user, refetch }) => {
 
     const onSubmit = async (data) => {
         data.value && show();
-        // console.log(data);
         await updatedUser(data);
         refetch()
         setFormUpdate(false)
-        // console.log('err', { isSuccess, isError, error });
         reset();
     };
     const show = () => {
@@ -52,8 +50,6 @@ const UpdateUserUser = ({ user, refetch }) => {
 
     return (<>
         <Button icon="pi pi-user-edit" label="עדכן פרטים" onClick={() => { setFormUpdate(true) }}></Button>
-
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Dialog
             visible={formUpdate}
 
@@ -61,9 +57,6 @@ const UpdateUserUser = ({ user, refetch }) => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
                 <div className="flex flex-column px-8 py-5 gap-4" style={{ borderRadius: '12px' }}>
-                    {/* <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" className="block mx-auto">
-
-                            </svg> */}
                     <Controller
                         name="name"
                         control={control}
@@ -75,7 +68,7 @@ const UpdateUserUser = ({ user, refetch }) => {
 
                                     {/* <label className="w-6rem">Username</label> */}
                                     <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    <label htmlFor={field.name} >name</label>
+                                    <label htmlFor={field.name} >שם</label>
 
                                 </span>
 
@@ -95,7 +88,7 @@ const UpdateUserUser = ({ user, refetch }) => {
 
                                     {/* <label className="w-6rem">Username</label> */}
                                     <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    <label htmlFor={field.name} >username</label>
+                                    <label htmlFor={field.name} >שם משתמש</label>
 
 
                                 </span>
@@ -104,22 +97,6 @@ const UpdateUserUser = ({ user, refetch }) => {
                             </>
                         )}
                     />
-                    {/* <Controller
-                                name="password"
-                                control={control}
-                                rules={{ required: 'password is required.' }}
-                                render={({ field, fieldState }) => (
-                                    <>
-                                        <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                        <span className="p-float-label" >
-                                            <Password id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} placeholder='password' toggleMask />
-                                            <label htmlFor={field.name} >password</label>
-                                        </span>
-
-                                        {getFormErrorMessage(field.name)}
-                                    </>
-                                )}
-                            /> */}
                     <Controller
                         name="email"
                         control={control}
@@ -133,7 +110,7 @@ const UpdateUserUser = ({ user, refetch }) => {
 
                                     {/* <label className="w-6rem">Username</label> */}
                                     <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    <label htmlFor={field.name} >email</label>
+                                    <label htmlFor={field.name} >אמייל</label>
 
 
                                 </span>
@@ -142,7 +119,7 @@ const UpdateUserUser = ({ user, refetch }) => {
                             </>
                         )}
                     />
-                    <Controller
+                    {/* <Controller
                         name="phone"
                         control={control}
                         rules={{ required: 'phone is required.' }}
@@ -150,21 +127,19 @@ const UpdateUserUser = ({ user, refetch }) => {
                             <>
                                 <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                 <span className="p-float-label" >
-
-                                    {/* <label className="w-6rem">Username</label> */}
                                     <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    <label htmlFor={field.name} >phone</label>
+                                    <label htmlFor={field.name} >טלפון</label>
 
                                 </span>
 
                                 {getFormErrorMessage(field.name)}
                             </>
                         )}
-                    />
+                    /> */}
                     <div >
-                        <Button label="עדכן" type="submit" text ></Button>
+                        <Button label="עדכן" type="submit"  ></Button>
                     </div><div>
-                        <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }} text ></Button>
+                        <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }}></Button>
                     </div>
 
                 </div>
