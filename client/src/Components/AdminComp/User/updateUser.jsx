@@ -8,7 +8,7 @@ import { useUpdateUserMutation } from "./usersApiSlice";
 import { Password } from "primereact/password";
 import { Dropdown } from "primereact/dropdown";
 
-const UpdateUser = ({ user }) => {
+const UpdateUser = ({ user ,refetch}) => {
     const toast = useRef(null);
     const [formUpdate, setFormUpdate] = useState(false)
     const [_id, setId] = useState("")
@@ -39,9 +39,9 @@ const UpdateUser = ({ user }) => {
         console.log(data);
         updatedUser(data);
         setFormUpdate(false)
+        refetch()
         console.log('err', { isSuccess, isError, error });
-        // if (!isSuccess) return (alert("try again"), reset(), navigate('/register'))
-        // else  navigate('/')
+        
         reset();
     };
     const show = () => {
@@ -60,7 +60,6 @@ const UpdateUser = ({ user }) => {
     return (<>
         <Button icon="pi pi-user-edit" className="p-button-rounded" onClick={() => { setFormUpdate(true) }}></Button>
 
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Dialog
             visible={formUpdate}
 
@@ -68,10 +67,7 @@ const UpdateUser = ({ user }) => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
                 <div className="flex flex-column  gap-3  flex-row  gap-2" >
-                    {/* <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" className="block mx-auto">
-
-                            </svg> */}
-
+                   
                     <Controller
                         name="role"
                         control={control}
@@ -81,12 +77,10 @@ const UpdateUser = ({ user }) => {
                                 <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                 <span className="p-float-label" >
 
-                                    {/* <label className="w-6rem">Username</label> */}
 
                                     <Dropdown value={field.value} onChange={(e) =>{console.log(e.value.code);field.onChange(e.value.code)} } options={roles} optionLabel="name"
-                                        placeholder="Select a Role" className="w-full md:w-14rem" />
-                                    {/* <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    <label htmlFor={field.name} >role</label> */}
+                                        placeholder="בחר תפקיד" className="w-full md:w-14rem" />
+                                   
 
                                 </span>
 
@@ -96,22 +90,18 @@ const UpdateUser = ({ user }) => {
                     />
 
 
-                    {/* <div className="flex align-items-center gap-2">
-                        <Button label="Sign-In" type='submit'  text className="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></Button>
-                        <Button label="Cancel" onClick={()=>{navigate('/aaa')}} text className="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></Button>
-                    </div> */}
+                  
                     <div >
-                        <Button label="Update" type="submit" ></Button>
+                        <Button label="עדכן" type="submit" ></Button>
                     </div> <div>
-                        <Button label="Cancel" onClick={(e) => { setFormUpdate(false) }} ></Button>
+                        <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }} ></Button>
                     </div>
 
                 </div>
 
             </form>
         </Dialog>
-        {/* </form> */}
-        {/* <Button onClick={setFormUpdate(true)} icon="pi pi-trash" rounded aria-label="Bookmark"></Button>) */}
+        
     </>
     )
 }

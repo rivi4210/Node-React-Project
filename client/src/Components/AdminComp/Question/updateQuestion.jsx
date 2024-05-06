@@ -83,7 +83,6 @@ const UpdateQuestion = ({ q }) => {
     return (<>
         <Button icon="pi pi-pencil" className="p-button-rounded" onClick={() => { setFormUpdate(true) }}></Button>
 
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Dialog
             visible={formUpdate}
             onHide={() => setFormUpdate(false)}>
@@ -102,7 +101,7 @@ const UpdateQuestion = ({ q }) => {
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
                                         <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.name}>Question</label>
+                                        <label htmlFor={field.name}>שאלה</label>
                                     </span>
                                     {getFormErrorMessage(field.name)}</div></>)}
                     />
@@ -118,7 +117,7 @@ const UpdateQuestion = ({ q }) => {
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
                                         <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.name}>Answer</label>
+                                        <label htmlFor={field.name}>תשובה</label>
                                     </span>
                                     {getFormErrorMessage(field.name)}</div></>)}
                     />
@@ -170,14 +169,12 @@ const UpdateQuestion = ({ q }) => {
                                         {getFormErrorMessage(field.name)}</div></>)}
                         />
                     </div>
-                    <Button label="UPDATE" type="submit" />
-                    <Button label="CANCLE" onClick={() => setFormUpdate(false)} />
+                    <Button label="עדכן" type="submit" />
+                    <Button label="ביטול" onClick={() => setFormUpdate(false)} />
 
                 </div>
             </form>
         </Dialog>
-        {/* </form> */}
-        {/* <Button onClick={setFormUpdate(true)} icon="pi pi-trash" rounded aria-label="Bookmark"></Button>) */}
     </>
     )
 }

@@ -5,6 +5,7 @@ import React from 'react';
     import { Avatar } from 'primereact/avatar';  
 import { Button } from 'primereact/button';
 import { Link, Outlet } from 'react-router-dom';
+import SignOut from './User/signOut';
     
 
 const Home=()=>{
@@ -19,18 +20,18 @@ const Home=()=>{
         );
         const items = [
             {
-                label: 'Home',
+                label: 'בית',
                 icon: 'pi pi-home',
                 url:'/user/home'
             },
             {
-                label: 'Courses',
+                label: 'קורסים',
                 icon: 'pi pi-list',
                 url:'/user/lesson'
                 
             },
             {
-                label: 'My Account',
+                label: 'איזור אישי',
                 icon: 'pi pi-user',
                 url:'/user/myAccount'
             }
@@ -51,7 +52,7 @@ const Home=()=>{
             <div >
                 <Menubar 
                 model={items} 
-            end={end}/> 
+            end={<SignOut/>}/> 
             <Outlet/>
            
            

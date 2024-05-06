@@ -23,18 +23,15 @@ const DeleteQuestion = ({_id}) => {
     const confirm = (event) => {
         confirmPopup({
             target: event.currentTarget,
-            message: 'Do you want to delete this lesson?',
+            message: '?האם תרצה למחוק שאלה זו',
             icon: 'pi pi-info-circle',
             defaultFocus: 'reject',
             accept,
         });
-
-
     };
 
     return (
         <>
-        {console.log("im here")}
             <Toast ref={toast} />
             <ConfirmPopup />
             <Button onClick={confirm} icon="pi pi-trash" rounded aria-label="Bookmark"></Button>

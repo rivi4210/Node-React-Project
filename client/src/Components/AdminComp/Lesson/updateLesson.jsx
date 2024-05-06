@@ -36,8 +36,7 @@ const UpdateLesson = ({ less }) => {
         updatedLesson(data);
         setFormUpdate(false)
         console.log('err', { isSuccess, isError, error });
-        // if (!isSuccess) return (alert("try again"), reset(), navigate('/register'))
-        // else  navigate('/')
+        
         reset();
     };
     const show = () => {
@@ -109,27 +108,18 @@ const UpdateLesson = ({ less }) => {
                                                             </div>
                                                         </div>
                                                         {getFormErrorMessage(field.name)}
-                                                        {/* <Button label="Update Lessson" type="submit" icon="pi pi-check" /> */}
                                                     </>
                                                 )}
                                             />
 
-
-                            {/* <div className="flex align-items-center gap-2">
-                        <Button label="Sign-In" type='submit'  text className="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></Button>
-                        <Button label="Cancel" onClick={()=>{navigate('/aaa')}} text className="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></Button>
-                    </div> */}
-                            <div className="flex align-items-center gap-2">
-                                <Button label="עדכן" type="submit" text ></Button>
-                                <Button label="ביטול" onClick={(e) => { setFormUpdate(false)}} text ></Button>
-                            </div>
+                                <Button label="עדכן" type="submit" ></Button>
+                                <Button label="ביטול" onClick={(e) => { setFormUpdate(false)}} ></Button>
+                            
 
                         </div>
 
                     </form>
             </Dialog>
-            {/* </form> */}
-        {/* <Button onClick={setFormUpdate(true)} icon="pi pi-trash" rounded aria-label="Bookmark"></Button>) */}
         </>
 )}
 export default UpdateLesson

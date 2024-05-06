@@ -16,13 +16,12 @@ const DeleteWord=({_id})=>{
         }
     }, [isSuccess])
     const accept = () => {
-        //  toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have deleted' });
         deleteWord(_id)
     }
     const confirm = (event) => {
         confirmPopup({
             target: event.currentTarget,
-            message: 'Do you want to delete this record?',
+            message: '?האם תרצה למחוק מילה זו',
             icon: 'pi pi-info-circle',
             defaultFocus: 'reject',
             accept,
@@ -30,7 +29,6 @@ const DeleteWord=({_id})=>{
 
 
     };
-
     return (
         <>
             <Toast ref={toast} />

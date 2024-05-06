@@ -3,9 +3,8 @@ import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup>
 import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method
 import { Toast } from "primereact/toast";
 import { useEffect, useRef } from "react";
-// import { useDeleteTodoMutation } from "./todoApiSlice";
 import { useDeleteUserMutation } from "./usersApiSlice";
-const DeleteUser = ({_id}) => {
+const DeleteUser = ({_id,refetch}) => {
     console.log(_id)
     const toast = useRef(null);
     const [deleteUser, { isError, isSuccess, error }] = useDeleteUserMutation()
@@ -19,11 +18,12 @@ const DeleteUser = ({_id}) => {
     const accept = () => {
         //  toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have deleted' });
         deleteUser(_id)
+        refetch()
     }
     const confirm = (event) => {
         confirmPopup({
             target: event.currentTarget,
-            message: 'Do you want to delete this record?',
+            message: '?האם תרצה למחוק משתמש זה',
             icon: 'pi pi-info-circle',
             defaultFocus: 'reject',
             accept,

@@ -6,6 +6,7 @@ const jwt=require("jsonwebtoken")
 const login=async(req,res)=>{
     const {username,password}=req.body
     if(!username || !password) return res.status(401).json({message:"there filds are required"})
+    console.log("aaaaaaaaaaaaaaaa");
 
     const user=await User.findOne({username:username}).lean()
     if(!user) return res.status(401).json({ message:"Unauthorized"})

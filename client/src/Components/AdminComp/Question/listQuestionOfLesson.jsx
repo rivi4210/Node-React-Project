@@ -79,12 +79,12 @@ const ListQestionOfLesson = () => {
 
     return (
         <div>
-            <div align='center'><Button label="ADD QUESTION" text onClick={() => { navigate('/admin/addQuestion/'.concat(idLess)) }} /></div>
+            <div align='center'><Button label="הוסף שאלה" text onClick={() => { navigate('/admin/addQuestion/'.concat(idLess)) }} /></div>
 
             <DataTable value={questions} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
-                <Column field="question" header="Question" style={{ width: '33%' }}></Column>
-                <Column field="answer" header="Answer" style={{ width: '33%' }}></Column>
-                <Column field="optional" header="Options" style={{ width: '33%' }} body={rowData => (
+                <Column field="question" header="שאלה" style={{ width: '33%' }}></Column>
+                <Column field="answer" header="תשובה" style={{ width: '33%' }}></Column>
+                <Column field="optional" header="אופציות" style={{ width: '33%' }} body={rowData => (
                     <ul>
                         {rowData.optional.map((option, index) => (
                             <li key={index}>{option}</li>

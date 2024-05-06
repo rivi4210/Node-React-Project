@@ -45,7 +45,7 @@ const{username,name,role,email}=useAuth()
                             </div>
                         </div>
                         <div> <UpdateUserUser user={user} refetch={refetch} /></div>
-                        <div><SignOut /></div>
+                        {/* <div><SignOut /></div> */}
                         </div>
                         <div ><MyMarks user={user}/></div>
                     

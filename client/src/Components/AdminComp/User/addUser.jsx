@@ -20,11 +20,7 @@ const AddUser = () => {
         { name: 'Admin', code: 'admin' }
     ];
     const [addUser, { isErrorAdd, isSuccessAdd, errorAdd }] = useAddUserMutation()
-    // const handleAdd = (e) => {
-    //     console.log(e);
-    //     addLesson({})
-    //     claer()
-    // }
+    
 
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
@@ -76,7 +72,7 @@ const AddUser = () => {
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
                                         <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.name}>Name</label>
+                                        <label htmlFor={field.name}>שם</label>
                                     </span>
                                     {getFormErrorMessage(field.name)}</div></>)}
                     />
@@ -91,7 +87,7 @@ const AddUser = () => {
                                     <label htmlFor={field.username} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
                                         <InputText id={field.username} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.username}>Username</label>
+                                        <label htmlFor={field.username}>שם משתמש</label>
                                     </span>
                                     {getFormErrorMessage(field.username)}</div></>)}
                     />
@@ -106,7 +102,7 @@ const AddUser = () => {
                                     <label htmlFor={field.password} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
                                         <InputText id={field.password} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.password}>Password</label>
+                                        <label htmlFor={field.password}>סיסמא</label>
                                     </span>
                                     {getFormErrorMessage(field.password)}</div></>)}
 
@@ -122,7 +118,7 @@ const AddUser = () => {
                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                             <span className="p-float-label" >
                                 <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                <label htmlFor={field.name} >email</label>
+                                <label htmlFor={field.name} >אמייל</label>
                             </span>
                             {getFormErrorMessage(field.name)}</div>
                         </>
@@ -139,7 +135,7 @@ const AddUser = () => {
                                 <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                 <span className="p-float-label" >
                                     <Dropdown value={field.value} onChange={(e) => { console.log(e.value.code); field.onChange(e.value.code) }} options={roles} optionLabel="name"
-                                        placeholder="Select a Role" className="w-full md:w-14rem" />
+                                        placeholder="בחר תפקיד" className="w-full md:w-14rem" />
                                 </span>
 
                                 {getFormErrorMessage(field.name)}</div>
@@ -148,9 +144,7 @@ const AddUser = () => {
                     />
 
 
-                    <Button label="Add User" type="submit" icon="pi pi-check" />
-
-                    {/* <Toast ref={toast} /> */}
+                    <Button label="הוסף משתמש" type="submit" icon="pi pi-check" />
 
                 </div>
             </form>

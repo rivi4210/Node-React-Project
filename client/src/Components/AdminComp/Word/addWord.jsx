@@ -5,7 +5,6 @@ import { Toast } from 'primereact/toast';
 import { RadioButton } from "primereact/radiobutton";
 import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
-// import { useAddLessonMutation } from './lessonsApiSlice';
 import { Divider } from 'primereact/divider';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAddWordMutation } from './wordApiSlice';
@@ -45,31 +44,26 @@ const AddWord = () => {
         formState: { errors },
         handleSubmit,
         getValues,
-        reset
+        reset,
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
 
         const formData = new FormData();
-        //   formData.append('Img', selectedFile)
-        // debugger
+        
         for (const value of formData.keys()) {
             console.log(value);
         }
-        // console.log(formData);
         formData.append('word', data.word);
         formData.append('translating', data.translating);
         formData.append('Img', selectedFile);
         formData.append('lesson', idLess);
 
-        // Send the file to your Node.js server using axios
         addWord(formData)
-        // data=new FormData()
+
 
 
         data.level && show();
-        // console.log({ word: data.word, translating: data.translating, Img: data.Img, lesson: idLess });
-        // addWord({ word: data.word, translating: data.translating, Img: data.Img, lesson: idLess })
         reset();
         navigate('/admin/listWordOfLesson/'.concat(idLess))
     };
@@ -93,7 +87,7 @@ const AddWord = () => {
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
                                         <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.name}>Word</label>
+                                        <label htmlFor={field.name}>מילה</label>
                                     </span>
                                     {getFormErrorMessage(field.name)}</div></>)}
                     />
@@ -108,7 +102,7 @@ const AddWord = () => {
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
                                         <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.name}>Translating</label>
+                                        <label htmlFor={field.name}>תרגום</label>
                                     </span>
                                     {getFormErrorMessage(field.name)}</div></>)}
                     />
@@ -120,27 +114,12 @@ const AddWord = () => {
                             <>
                                 <div></div><div></div>
                                 <input type="file" name="Img" onChange={handleFileChange} />
-                                {/* <input type='file'  name='Img' id={field.name}  onChange={(e) => field.onChange(e.target.value)}  /> */}
-
-                                {/* <div className="flex justify-content-center" > */}
-                                {/* <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label> */}
-                                {/* <span className="p-float-label"> */}
-                                {/* <FileUpload mode="basic"  id={field.name} value={field.value} type='file' className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} /> */}
-                                {/* <FileUpload mode="basic" name="demo[]" url="/publib/upload" accept="image/*" maxFileSize={1000000} onUpload={onUpload} auto chooseLabel="Browse" /> */}
-                                {/* <label htmlFor={field.name}>Img</label> */}
-                                {/* </span> */}
-                                {/* {getFormErrorMessage(field.name)}</div> */}
+                              
                             </>
                         )}
                     />
-                    {/* <form enctype="multipart/form-data"> */}
-                    {/* <input type='file' name='Img' /> */}
-                    {/* </form> */}
-
-                    {/* <Toast ref={toast} /> */}
-
-
-                    <Button label="Add Word" type="submit" />
+                   
+                    <Button label="הוסף מילה" type="submit" />
 
                 </div>
             </form>

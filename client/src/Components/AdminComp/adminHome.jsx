@@ -4,6 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Badge } from 'primereact/badge';
 import { Avatar } from 'primereact/avatar';
 import { Outlet } from 'react-router-dom';
+import Search from '../Search/search';
 
 
 const AdminHome = () => {
@@ -18,17 +19,17 @@ const AdminHome = () => {
     );
     const items = [
         {
-            label: 'Home',
+            label: 'בית',
             icon: 'pi pi-home',
             url: '/admin/home'
         },
         {
-            label: 'Users',
+            label: 'משתמשים',
             icon: 'pi pi-users',
             url: '/admin/user'
         },
         {
-            label: 'Learn',
+            label: 'למידה',
             icon: 'pi pi-list',
             url:'/admin/learn'
         }, 
@@ -37,51 +38,51 @@ const AdminHome = () => {
             icon: 'pi pi-list',
             url:'/admin/signOut'
         },
-        {
-            label: 'Projects',
-            icon: 'pi pi-search',
-            items: [
-                {
-                    label: 'Core',
-                    icon: 'pi pi-bolt',
-                    shortcut: '⌘+S',
-                    template: itemRenderer
-                },
-                {
-                    label: 'Blocks',
-                    icon: 'pi pi-server',
-                    shortcut: '⌘+B',
-                    template: itemRenderer
-                },
-                {
-                    label: 'UI Kit',
-                    icon: 'pi pi-pencil',
-                    shortcut: '⌘+U',
-                    template: itemRenderer
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Templates',
-                    icon: 'pi pi-palette',
-                    items: [
-                        {
-                            label: 'Apollo',
-                            icon: 'pi pi-palette',
-                            badge: 2,
-                            template: itemRenderer
-                        },
-                        {
-                            label: 'Ultima',
-                            icon: 'pi pi-palette',
-                            badge: 3,
-                            template: itemRenderer
-                        }
-                    ]
-                }
-            ]
-        },
+        // {
+        //     label: 'Projects',
+        //     icon: 'pi pi-search',
+        //     items: [
+        //         {
+        //             label: 'Core',
+        //             icon: 'pi pi-bolt',
+        //             shortcut: '⌘+S',
+        //             template: itemRenderer
+        //         },
+        //         {
+        //             label: 'Blocks',
+        //             icon: 'pi pi-server',
+        //             shortcut: '⌘+B',
+        //             template: itemRenderer
+        //         },
+        //         {
+        //             label: 'UI Kit',
+        //             icon: 'pi pi-pencil',
+        //             shortcut: '⌘+U',
+        //             template: itemRenderer
+        //         },
+        //         {
+        //             separator: true
+        //         },
+        //         {
+        //             label: 'Templates',
+        //             icon: 'pi pi-palette',
+        //             items: [
+        //                 {
+        //                     label: 'Apollo',
+        //                     icon: 'pi pi-palette',
+        //                     badge: 2,
+        //                     template: itemRenderer
+        //                 },
+        //                 {
+        //                     label: 'Ultima',
+        //                     icon: 'pi pi-palette',
+        //                     badge: 3,
+        //                     template: itemRenderer
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // },
         // {
         //     label: 'Contact',
         //     icon: 'pi pi-envelope',
@@ -101,7 +102,7 @@ const AdminHome = () => {
     return (
         <>
         <div className="card">
-            <Menubar model={items} end={end} />
+            <Menubar model={items} end={<Search/>} />
         </div>
         <Outlet/>
         </>
