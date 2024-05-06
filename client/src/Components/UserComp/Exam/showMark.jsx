@@ -8,15 +8,13 @@ import { useUpdateExamMutation } from "./examApiSlice";
 const ShowMark = ({ mistake, unMistake, lesson }) => {
     const navigate = useNavigate()
     const [visible, setVisible] = useState(true);
-    const [mark, setMark] = useState(0)
+    // const [mark, setMark] = useState(0)
 
     const [updateExam, { isErrorAdd, isSuccessAdd, errorAdd }] = useUpdateExamMutation()
     console.log('lesson', lesson);
 
     const headerElement = (
         <div className="inline-flex align-items-center justify-content-center gap-2">
-            {/* <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" /> */}
-            {/* <span className="font-bold white-space-nowrap">Amy Elsner</span> */}
         </div>
     );
 

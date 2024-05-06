@@ -5,6 +5,7 @@ import { Badge } from 'primereact/badge';
 import { Avatar } from 'primereact/avatar';
 import { Outlet } from 'react-router-dom';
 import Search from '../Search/search';
+import SignOut from '../UserComp/User/signOut';
 
 
 const AdminHome = () => {
@@ -102,7 +103,7 @@ const AdminHome = () => {
     return (
         <>
         <div className="card">
-            <Menubar model={items} end={<Search/>} />
+            <Menubar model={items} end={<SignOut />} />
         </div>
         <Outlet/>
         </>

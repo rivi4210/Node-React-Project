@@ -40,8 +40,6 @@ const UpdateWord = ({ w }) => {
 
     const onSubmit = (data) => {
         data.value && show();
-        console.log('gggggggggg', data.Img);
-
         const formData = new FormData();
         
         for (const value of formData.values()) {

@@ -35,14 +35,11 @@ const QuestionList = () => {
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
 
-        // While there remain elements to shuffle.
         while (currentIndex > 0) {
 
-            // Pick a remaining element.
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
 
-            // And swap it with the current element.
             [array[currentIndex], array[randomIndex]] = [
                 array[randomIndex], array[currentIndex]];
         }
@@ -59,18 +56,14 @@ const QuestionList = () => {
     if (isSuccess) {
         console.log(firstTime);
         quest = questions[i]?.question
-        // console.log('qqqqqqqqestions', questions[0].question);
         for (let index = 0; index < questions.length; index++) {
             answers[index] = [...questions[index].optional]
             answers[index].push(questions[index].answer)
         }
         firstList()
-        // console.log('after', answers);
     }
 
     const nextQest = async () => {
-        // console.log('answers', answers[i + 1]);
-        // console.log('qlqlql', i + 1 > questions.length);
         if (i + 1 < questions.length) {
             setCurrentAnswers(shuffle(answers[i + 1]))
             if (current !== questions[i]?.answer) {
@@ -119,7 +112,7 @@ const QuestionList = () => {
 
     const footer = (
         <>
-            <Button label="Next" icon="pi pi-arrow-right" onClick={() => nextQest()} />
+            <Button label="הבא" icon="pi pi-arrow-right" onClick={() => nextQest()} />
         </>
     );
 
@@ -137,7 +130,7 @@ const QuestionList = () => {
                                 <>
                                     <div className="flex justify-content-center">
                                         <div className="flex align-items-center">
-                                            {answers[0]?.length ? console.log('ttttttttttttttttttttt', answers[0][0]) : ''}
+                                            {/* {answers[0]?.length ? console.log('ttttttttttttttttttttt', answers[0][0]) : ''} */}
                                             <RadioButton inputId="f5" {...field} inputRef={field.ref} value={currentAnswers?.length && currentAnswers[0]} onChange={() => { setCurrent(currentAnswers?.length && currentAnswers[0]) }}
                                             />
                                             <label htmlFor="f5" className="ml-1 mr-3">
