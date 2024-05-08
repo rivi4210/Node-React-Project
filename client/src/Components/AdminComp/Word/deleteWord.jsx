@@ -11,7 +11,6 @@ const DeleteWord=({_id})=>{
 
     useEffect(() => {
         if (isSuccess) {
-            
             toast.current.show({ severity: 'success', summary: 'Success', detail: `You have deleted ` });
         }
     }, [isSuccess])

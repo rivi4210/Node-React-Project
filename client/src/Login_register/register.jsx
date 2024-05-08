@@ -17,9 +17,9 @@ const Register = () => {
     const [registerFunc, { isError, isSuccess, isLoading, data, error }] = useRegisterMutation()
 
 
-    const show = () => {
-        toast.current.show({ severity: 'warning', summary: 'Form Submitted', detail: getValues('value') });
-    };
+    // const show = () => {
+    //     toast.current.show({ severity: 'warning', summary: 'Form Submitted', detail: getValues('value') });
+    // };
 
     const checkAllow = (isSuccess) => {
         if (!isSuccess) {
@@ -32,6 +32,10 @@ const Register = () => {
     useEffect(() => {
         checkAllow(isSuccess)
     }, [isSuccess])
+
+    // useEffect(() => {
+    //     toast.current.show({ severity: 'warning', summary: 'נסה שוב', detail: getValues('value') });
+    // }, [isError])
 
     useEffect(() => {
         checkAllow(isSuccess)
@@ -57,10 +61,10 @@ const Register = () => {
         console.log(data);
         await registerFunc(data);
         console.log('err', { isSuccess, isError, error }); 
-        if(error?.status==409) {
-            console.log("llllllllll");
-            data.value && show();
-        } 
+        // if(error?.status==409) {
+        //     console.log("llllllllll");
+        //     data.value && show();
+        // } 
         reset();
     };
 

@@ -86,11 +86,9 @@
 //             </form>
             
 //                 <Button label="הרשמה" onClick={()=>{navigate('/register')}} icon="pi pi-check" />
-            
-            
+                       
 // </div>
 // )}
-
 // export default Login
 
 import React from 'react';

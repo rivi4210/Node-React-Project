@@ -2,18 +2,10 @@ import React, { useRef } from 'react';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
-import { Rating } from 'primereact/rating';
-import { Tag } from 'primereact/tag';
-import { classNames } from 'primereact/utils';
-import { DataScroller } from 'primereact/datascroller';
-
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import { InputText } from 'primereact/inputtext';
-import { Dialog } from 'primereact/dialog';
-import { useAddLessonMutation, useDeleteLessonMutation, useGetLessonQuery, useUpdateLessonMutation } from '../Lesson/lessonsApiSlice';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, renderMatches, useNavigate } from 'react-router-dom';
 import { Toast } from 'primereact/toast';
 import { useFormik } from 'formik';
 import { Controller, useForm } from 'react-hook-form';
@@ -25,29 +17,38 @@ import UpdateWord from './updateWord';
 import DeleteWord from './deleteWord';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { render } from 'react-dom';
+import { ConfirmPopup, confirmPopup } from "primereact/confirmpopup";
+
 
 
 const ListWordOfLesson = () => {
     const { idLess } = useParams();
     console.log(idLess);
+    const domNode = document.getElementById('root');
 
     const navigate = useNavigate()
     const toast = useRef(null);
-
-    // const [formUpdate, setFormUpdate] = useState(false)
-
     const [_id, setId] = useState("")
 
-    // const [deleteWord, { isErrorDel, isSuccessDel, errorDel }] = useDeleteWordMutation()
-    // const handleDelete = (e) => {
-    //     console.log(e);
-    //     deleteWord(e)
-    // }
 
+    console.log(_id)
+    // const toast = useRef(null);
+    const [deleteWord, {  isSuccess }] = useDeleteWordMutation()
 
-    const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
-    };
+    useEffect(() => {
+        if (isSuccess) {
+            toast.current.show({ severity: 'success', summary: 'Success', detail: `You have deleted ` });
+        }
+    }, [isSuccess])
+
+    const accept = () => {
+        deleteWord(_id)
+    }
+
+    // const show = () => {
+    //     toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
+    // };
 
     const defaultValues = {
         _id: '',
@@ -64,11 +65,9 @@ const ListWordOfLesson = () => {
         reset
     } = useForm({ defaultValues });
 
-
-
-    const getFormErrorMessage = (name) => {
-        return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
-    };
+    // const getFormErrorMessage = (name) => {
+    //     return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
+    // };
     const {
         data: words,
         isLoading,
@@ -89,14 +88,12 @@ const ListWordOfLesson = () => {
     }
 
     const sendToDelete = (word) => {
-        return <DeleteWord _id={word._id} refetch={refetch}/>
+        return (<DeleteWord _id={word._id} refetch={refetch}/>)
     }
 
     return (
         <div>
             <Button icon="pi pi-arrow-left" onClick={() => navigate("/admin/learn")} />
-
-
             <div align='center'><Button
                 label="הוסף מילה לשיעור"
                 text

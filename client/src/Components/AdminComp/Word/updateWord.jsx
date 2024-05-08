@@ -7,13 +7,13 @@ import { useEffect, useRef, useState } from "react";
 import { Controller, set, useForm } from "react-hook-form";
 import { useGetWordsByIdLessQuery, useUpdateWordMutation } from "./wordApiSlice";
 
-const UpdateWord = ({ w }) => {
+const UpdateWord = ({ w, refetch }) => {
     const toast = useRef(null);
     const [formUpdate, setFormUpdate] = useState(false)
     const [_id, setId] = useState("")
     const [updatedWord, { isError, isSuccess, error }] = useUpdateWordMutation()
     const [selectedFile, setSelectedFile] = useState(null);
-    
+
     const handleFileChange = (event) => {
         console.log(event);
         if (event)
@@ -27,10 +27,15 @@ const UpdateWord = ({ w }) => {
         _id: w._id,
         lesson: w.lesson
     };
-    useEffect(()=>
-    {
-
-    },[defaultValues])
+    useEffect(() => {
+        reset({
+            word: w.word,
+            translating: w.translating,
+            Img: w.Img,
+            _id: w._id,
+            lesson: w.lesson
+        })
+    }, [w])
     const {
         control,
         formState: { errors },
@@ -41,26 +46,26 @@ const UpdateWord = ({ w }) => {
 
     const onSubmit = (data) => {
         console.log("aaaaaaa");
-    console.log(data);
-    console.log(defaultValues);
+        console.log(data);
+        console.log(defaultValues);
         data.value && show();
         const formData = new FormData();
-        
+
         for (const value of formData.values()) {
             console.log('fd', value);
         }
-        
+
         formData.append('word', data.word);
         formData.append('_id', data._id);
         formData.append('translating', data.translating);
-        selectedFile?formData.append('Img', selectedFile ):formData.append('Img',data.Img );
+        selectedFile ? formData.append('Img', selectedFile) : formData.append('Img', data.Img);
         formData.append('lesson', data.lesson);
         updatedWord(formData)
         setFormUpdate(false)
         console.log('err', { isSuccess, isError, error });
 
         reset();
-        
+
     };
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
@@ -121,15 +126,15 @@ const UpdateWord = ({ w }) => {
                         render={({ field, fieldState }) => (
                             <>
                                 <div></div><div></div>
-                                <input type="file" name="Img" onChange={handleFileChange}/>
+                                <input type="file" name="Img" onChange={handleFileChange} />
 
                             </>
                         )}
                     />
-                    
-                        <Button label="עדכן" type="submit" ></Button>
-                        <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }} ></Button>
-                    
+
+                    <Button label="עדכן" type="submit" ></Button>
+                    <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }} ></Button>
+
 
                 </div>
 
