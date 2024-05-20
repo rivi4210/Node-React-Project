@@ -2,7 +2,7 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, set, useForm } from "react-hook-form";
 import { useUpdateUserMutation } from "./userApiSlice";
 import { Password } from "primereact/password";
@@ -33,10 +33,22 @@ const UpdateUserUser = ({ user, refetch }) => {
         reset
     } = useForm({ defaultValues });
 
+    useEffect(() => {
+        reset({
+            name: user.name,
+            username: user.username,
+            email: user.email,
+            password: user.password,
+            phone: user.phone,
+            _id: user._id,
+            role: user.role
+        })
+    }, [user])
+
     const onSubmit = async (data) => {
         data.value && show();
         await updatedUser(data);
-        refetch()
+        await refetch()
         setFormUpdate(false)
         reset();
     };
@@ -85,8 +97,6 @@ const UpdateUserUser = ({ user, refetch }) => {
                                 <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                 <span className="p-float-label" >
 
-
-                                    {/* <label className="w-6rem">Username</label> */}
                                     <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
                                     <label htmlFor={field.name} >שם משתמש</label>
 
@@ -105,10 +115,6 @@ const UpdateUserUser = ({ user, refetch }) => {
                             <>
                                 <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                 <span className="p-float-label" >
-
-
-
-                                    {/* <label className="w-6rem">Username</label> */}
                                     <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
                                     <label htmlFor={field.name} >אמייל</label>
 
@@ -119,25 +125,8 @@ const UpdateUserUser = ({ user, refetch }) => {
                             </>
                         )}
                     />
-                    {/* <Controller
-                        name="phone"
-                        control={control}
-                        rules={{ required: 'phone is required.' }}
-                        render={({ field, fieldState }) => (
-                            <>
-                                <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                <span className="p-float-label" >
-                                    <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    <label htmlFor={field.name} >טלפון</label>
-
-                                </span>
-
-                                {getFormErrorMessage(field.name)}
-                            </>
-                        )}
-                    /> */}
                     <div >
-                        <Button label="עדכן" type="submit"  ></Button>
+                        <Button label="עדכן" type="submit"></Button>
                     </div><div>
                         <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }}></Button>
                     </div>

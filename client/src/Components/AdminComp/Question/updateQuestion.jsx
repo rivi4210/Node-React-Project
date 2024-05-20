@@ -3,14 +3,10 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, set, useForm } from "react-hook-form";
-import { Password } from "primereact/password";
-import { RadioButton } from "primereact/radiobutton";
-// import { useGetWordsByIdLessQuery, useUpdateWordMutation } from "./wordApiSlice";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "primereact/toast";
-import { useUpdateWordMutation } from "../Word/wordApiSlice";
 import { useUpdateQuestionMutation } from "./questionApiSlice";
 
 const UpdateQuestion = ({ q }) => {
@@ -20,19 +16,6 @@ const UpdateQuestion = ({ q }) => {
     const [updatedQuestion, { isError, isSuccess, error }] = useUpdateQuestionMutation()
     const [selectedFile, setSelectedFile] = useState(null);
     const navigate = useNavigate()
-    // const handleUpdate = (user) => {
-    //     // !name && setName(user.name)
-    //     console.log({ _id, name, username, password, phone, email, role })
-    //     updatedUser({ _id, name, username, password, phone, email, role })
-    //     claer()
-
-    // // }
-    const handleFileChange = (event) => {
-        // debugger
-        console.log(event);
-        if (event)
-            setSelectedFile(event.target.files[0]);
-    };
 
     const defaultValues = {
         optional: q.optional,
@@ -54,23 +37,29 @@ const UpdateQuestion = ({ q }) => {
     } = useForm({ defaultValues });
 
 
+    useEffect(() => {
+        reset({
+            optional: q.optional,
+            question: q.question,
+            answer: q.answer,
+            _id: q._id,
+            option1: q.optional[0],
+            option2: q.optional[1],
+            option3: q.optional[2],
+            lesson: q.lesson
+        })
+    }, [q])
     const onSubmit = (data) => {
         console.log(data);
         setFormUpdate(false)
-        data.optional[0]=data.option1
-        data.optional[1]=data.option2
-        data.optional[2]=data.option3
+        data.optional[0] = data.option1
+        data.optional[1] = data.option2
+        data.optional[2] = data.option3
         console.log('oppppptional', data);
         updatedQuestion(data)
-        // data=new FormData()
-
-
         data.level && show();
-        // console.log({ word: data.word, translating: data.translating, Img: data.Img, lesson: idLess });
-        // addWord({ word: data.word, translating: data.translating, Img: data.Img, lesson: idLess })
         reset();
         navigate('/admin/listQuestionOfLesson/'.concat(q.lesson))
-
     };
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
@@ -134,7 +123,6 @@ const UpdateQuestion = ({ q }) => {
                                         <span className="p-float-label">
 
                                             <InputText placeholder='Option 1' defaultValue={q.optional[0]} id={field.name} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                            {/* <label htmlFor={field.name}>Option 1</label> */}
                                         </span>
                                         {getFormErrorMessage(field.name)}</div></>)}
                         />
@@ -149,7 +137,6 @@ const UpdateQuestion = ({ q }) => {
                                         <span className="p-float-label">
 
                                             <InputText placeholder='Option 2' defaultValue={q.optional[1]} id={field.name} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                            {/* <label htmlFor={field.name}>Option 2</label> */}
                                         </span>
                                         {getFormErrorMessage(field.name)}</div></>)}
                         />
@@ -164,7 +151,6 @@ const UpdateQuestion = ({ q }) => {
                                         <span className="p-float-label">
 
                                             <InputText placeholder='Option 3' defaultValue={q.optional[2]} id={field.name} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                            {/* <label htmlFor={field.name}>Option 3</label> */}
                                         </span>
                                         {getFormErrorMessage(field.name)}</div></>)}
                         />

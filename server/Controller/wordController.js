@@ -2,8 +2,7 @@ const Word = require("../Model/wordModel")
 
 const createNewWord = async (req, res) => {
     if (req.user.role == "admin") {
-        // console.log(req);
-        // console.log("role",req.user.role);
+        
         const { word, translating, lesson } = req.body;
         console.log('aaaa',req.file);
         const imageUrl = (req.file?.filename? req.file.filename:""); 
@@ -70,8 +69,9 @@ const updateWord = async (req, res) => {
         
         const wordd = await Word.findOne({ _id })
         console.log("word",wordd);
-        const imageUrl = (req.file?.filename? req.file.filename:wordd.Img); 
+       
         if (!wordd) return res.status(400).send("not exist")
+        const imageUrl = (req.file?.filename? req.file.filename:wordd.Img||""); 
         if (wordd.word !== word || wordd.translating !== translating || wordd.lesson !== lesson) {
             const checkWTL =  await Word.findOne({_id, word, translating, lesson })
             if (checkWTL?.length && checkWTL._id!==_id) return res.status(400).send("word & translating in this lesson are exist!!")

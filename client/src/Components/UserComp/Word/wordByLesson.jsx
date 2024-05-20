@@ -19,8 +19,6 @@ const WordByLesson=()=>{
 
     const navigate = useNavigate()
     const toast = useRef(null);
-
-    // const [words, setProducts] = useState([]);
     const responsiveOptions = [
         {
             breakpoint: '1400px',
@@ -60,10 +58,6 @@ const WordByLesson=()=>{
         }
     };
     
-    // useEffect(() => {
-    //     ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
-    // }, []);
-
     const [formUpdate, setFormUpdate] = useState(false)
 
     const [_id, setId] = useState("")
@@ -77,10 +71,8 @@ const WordByLesson=()=>{
     };
 
     const defaultValues = {
-        // _id: '',
         word: '',
         translating: '',
-        // lesson: '',
         Img: ''
     };
 
@@ -91,15 +83,6 @@ const WordByLesson=()=>{
         getValues,
         reset
     } = useForm({ defaultValues });
-
-    // const onSubmit = (data) => {
-    //     data.word && show();
-    //     console.log({ _id, word: data.word, lesson: data.lesson, translating: data.translating });
-    //     updatedWord({ _id, word: data.word, lesson: idLess, translating: data.translating, Img: data.Img })
-    //     reset();
-    //     setFormUpdate(false)
-    //     // navigate('/admin/learn')
-    // };
 
     const getFormErrorMessage = (name) => {
         return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
@@ -112,9 +95,6 @@ const WordByLesson=()=>{
     } = useGetWordsByIdLessQuery(idLess)
     if (isLoading) return <h1>Loading</h1>
     if (isError) return <h2>{error}</h2>
-    // if (!words?.length) return <h2>no words in this lesson!!!!!!!!!!!!!!</h2>
-
-
     const productTemplate = (w) => {
         return (
             <div className="border-3 surface-border border-round m-8 text-center py-5 px-10">
@@ -124,7 +104,6 @@ const WordByLesson=()=>{
                 <div>
                     <h1 className="mb-1">{w.word}</h1>
                     <h2 className="mt-0 mb-3">{w.translating}</h2>
-                    {/* <Tag value={word.inventoryStatus} severity={getSeverity(word)}></Tag> */}
                     <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
                         <Button icon="pi pi-search" className="p-button p-button-rounded" />
                         <Button icon="pi pi-star-fill" className="p-button-success p-button-rounded" />

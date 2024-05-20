@@ -3,7 +3,6 @@ import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup>
 import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method
 import { Toast } from "primereact/toast";
 import { useEffect, useRef } from "react";
-// import { useDeleteTodoMutation } from "./todoApiSlice";
 import { useDeleteLessonMutation } from "./lessonsApiSlice";
 const DeleteLesson = ({_id}) => {
     console.log(_id)
@@ -11,13 +10,12 @@ const DeleteLesson = ({_id}) => {
     const [deleteLesson, { isError, isSuccess, error }] = useDeleteLessonMutation()
 
     useEffect(() => {
-        if (isSuccess) {
-            
+        if (isSuccess) { 
             toast.current.show({ severity: 'success', summary: 'Success', detail: `You have deleted ` });
         }
     }, [isSuccess])
+
     const accept = () => {
-        //  toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have deleted' });
         deleteLesson(_id)
     }
     const confirm = (event) => {
@@ -34,7 +32,6 @@ const DeleteLesson = ({_id}) => {
 
     return (
         <>
-        {console.log("im here")}
             <Toast ref={toast} />
             <ConfirmPopup />
             <Button onClick={confirm} icon="pi pi-trash" rounded aria-label="Bookmark"></Button>

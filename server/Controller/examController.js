@@ -29,9 +29,7 @@ const getAllMyExams = async (req, res) => {
         console.log(req.user._id)
         const _idUser = req.user._id
         const allExams = await Exam.find({ user: _idUser }).lean()
-        // const ExamsWithLesson =await Promise.all( allExams.map(async (e) => { await Lesson.findOne({ _id: e.lesson }).lean() }))
         const ExamsWithLesson = await Promise.all(allExams.map(async (e) => {
-            // return {lesson: await Lesson.findOne({ _id: e.lesson }).lean(),mark:e.mark} 
             const currentLesson=await Lesson.findOne({ _id: e.lesson }).lean()
             return {level:currentLesson.level,category:currentLesson.category,mark:e.mark}
             

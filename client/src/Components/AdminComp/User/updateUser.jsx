@@ -2,13 +2,13 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, set, useForm } from "react-hook-form";
 import { useUpdateUserMutation } from "./usersApiSlice";
 import { Password } from "primereact/password";
 import { Dropdown } from "primereact/dropdown";
 
-const UpdateUser = ({ user ,refetch}) => {
+const UpdateUser = ({ user, refetch }) => {
     const toast = useRef(null);
     const [formUpdate, setFormUpdate] = useState(false)
     const [_id, setId] = useState("")
@@ -34,14 +34,26 @@ const UpdateUser = ({ user ,refetch}) => {
     } = useForm({ defaultValues });
 
 
+    useEffect(() => {
+        reset({
+            name: user.name,
+            username: user.username,
+            email: user.email,
+            password: user.password,
+            phone: user.phone,
+            _id: user._id,
+            role: user.role
+        })
+    }, [user])
+
     const onSubmit = (data) => {
         data.value && show();
         console.log(data);
         updatedUser(data);
         setFormUpdate(false)
-        refetch()
+        // refetch()
         console.log('err', { isSuccess, isError, error });
-        
+
         reset();
     };
     const show = () => {
@@ -67,7 +79,6 @@ const UpdateUser = ({ user ,refetch}) => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
                 <div className="flex flex-column  gap-3  flex-row  gap-2" >
-                   
                     <Controller
                         name="role"
                         control={control}
@@ -78,9 +89,9 @@ const UpdateUser = ({ user ,refetch}) => {
                                 <span className="p-float-label" >
 
 
-                                    <Dropdown value={field.value} onChange={(e) =>{console.log(e.value.code);field.onChange(e.value.code)} } options={roles} optionLabel="name"
+                                    <Dropdown value={field.value} onChange={(e) => { console.log(e.value.code); field.onChange(e.value.code) }} options={roles} optionLabel="name"
                                         placeholder="בחר תפקיד" className="w-full md:w-14rem" />
-                                   
+
 
                                 </span>
 
@@ -90,7 +101,6 @@ const UpdateUser = ({ user ,refetch}) => {
                     />
 
 
-                  
                     <div >
                         <Button label="עדכן" type="submit" ></Button>
                     </div> <div>
@@ -101,7 +111,6 @@ const UpdateUser = ({ user ,refetch}) => {
 
             </form>
         </Dialog>
-        
     </>
     )
 }

@@ -13,7 +13,6 @@ const userApiSlice=apiSlice.injectEndpoints({
                 url: "/user",
                 method: "PUT",
                 body: user
-                // headers:{"autorization":}
             }),
             invalidatesTags: ['User']
         }),

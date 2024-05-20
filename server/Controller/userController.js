@@ -1,4 +1,5 @@
 const User = require("../Model/userModel")
+const Exam=require("../Model/examModel")
 const bcrypt = require('bcrypt')
 const createNewUser = async (req, res) => {
 
@@ -107,14 +108,12 @@ const updateUser = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
-    console.log('idddd' + req.user._id);
     if (req.user.role == "user") {
         const _id = req.user._id
         console.log(_id);
         const user = await User.findById(_id)
-        console.log(user);
         if (!user) return res.status(400).send("not found")
-
+        
         const result = await user.deleteOne()
 
         const deleted = `${_id} deleted`
@@ -123,7 +122,12 @@ const deleteUser = async (req, res) => {
     else {
         const { _id } = req.body
         const user = await User.findById(_id)
+        
         if (!user) return res.status(400).send("not found")
+        const exams = await Exam.find({user:_id})
+        console.log("dddddddddddddddd",exams);
+        exams.map(exam=>exam.deleteOne())
+
 
         const result = await user.deleteOne()
 

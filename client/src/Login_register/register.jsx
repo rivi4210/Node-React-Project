@@ -5,7 +5,6 @@ import { classNames } from 'primereact/utils';
 import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
 import { Password } from 'primereact/password';
-import Alert from 'react-bootstrap/Alert';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -18,14 +17,14 @@ const Register = () => {
     const [registerFunc, { isError, isSuccess, isLoading, data, error }] = useRegisterMutation()
 
 
-    const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
-    };
+    // const show = () => {
+    //     toast.current.show({ severity: 'warning', summary: 'Form Submitted', detail: getValues('value') });
+    // };
 
     const checkAllow = (isSuccess) => {
         if (!isSuccess) {
             reset()
-            navigate('/register')
+            // navigate('/register')
         }
         else navigate('/login')
     }
@@ -33,6 +32,14 @@ const Register = () => {
     useEffect(() => {
         checkAllow(isSuccess)
     }, [isSuccess])
+
+    // useEffect(() => {
+    //     toast.current.show({ severity: 'warning', summary: 'נסה שוב', detail: getValues('value') });
+    // }, [isError])
+
+    useEffect(() => {
+        checkAllow(isSuccess)
+    }, [error])
     const defaultValues = {
         name: '',
         username: '',
@@ -49,11 +56,15 @@ const Register = () => {
         reset
     } = useForm({ defaultValues });
 
-    const onSubmit = (data) => {
-        data.value && show();
+    const onSubmit = async(data) => {
+        
         console.log(data);
-        registerFunc(data);
-        console.log('err', { isSuccess, isError, error });
+        await registerFunc(data);
+        console.log('err', { isSuccess, isError, error }); 
+        // if(error?.status==409) {
+        //     console.log("llllllllll");
+        //     data.value && show();
+        // } 
         reset();
     };
 
@@ -63,7 +74,6 @@ const Register = () => {
     };
     return (
         <><form onSubmit={handleSubmit(onSubmit)}>
-
             <div className="flex flex-column px-8 py-5 gap-4" style={{ borderRadius: '12px' }}>
                 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" className="block mx-auto">
 
@@ -141,9 +151,9 @@ const Register = () => {
                     )}
                 />
                 <div className="flex align-items-center gap-2">
-                    <Button label="Sign-In" type='submit' text></Button>
+                    <Button label="הרשמה" type='submit' text></Button>
 
-                    <Button label="Cancel" onClick={(e) => navigate('/')} text ></Button>
+                    <Button label="ביטול" onClick={(e) => navigate('/')} text ></Button>
                 </div>
 
             </div>

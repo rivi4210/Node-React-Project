@@ -1,4 +1,5 @@
 const Lesson=require("../Model/lessonModel")
+const Word=require("../Model/wordModel")
 
 const createNewLesson=async(req,res)=>{
     if(req.user.role=="admin"){
@@ -9,7 +10,6 @@ const createNewLesson=async(req,res)=>{
     if(!category) return res.status(400).send("Category is require!")
 
     const checkLevelCategory=await (await Lesson.find({category,level})).map(less=>{ return {category:less.category,level:less.level}})
-    // const checkUserName= User.find({userName: userName});
     console.log({checkLevelCategory});
     if(checkLevelCategory?.length) return res.status(401).send("level & category are exist!!")
 
@@ -79,8 +79,13 @@ const deleteLesson=async(req,res)=>{
     if(req.user.role=="admin"){
     const {_id}=req.body
     const less=await Lesson.findById(_id)
+    const words=await Word.find({lesson:less._id})
+    
     if(!less) return res.status(400).send("not found")
 
+    words.map(word=>word.deleteOne())
+
+    // const resultWords=await words.deleteOne()
     const result=await less.deleteOne()
 
     const deleted=`${_id} deleted`

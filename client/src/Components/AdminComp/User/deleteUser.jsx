@@ -11,12 +11,12 @@ const DeleteUser = ({_id,refetch}) => {
 
     useEffect(() => {
         if (isSuccess) {
-            
+
             toast.current.show({ severity: 'success', summary: 'Success', detail: `You have deleted ` });
         }
     }, [isSuccess])
     const accept = () => {
-        //  toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have deleted' });
+
         deleteUser(_id)
         refetch()
     }

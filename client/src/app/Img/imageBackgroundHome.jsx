@@ -40,8 +40,7 @@ const ImageBackgroundHome = ({ imageName, children }) => {
         <div style={backgroundStyle} />
         <div style={contentStyle}>
           {children}
-          <button style={buttonStyle}  onClick={()=>navigate("/login")} >Login</button>
-          {/* <div><Button onClick={()=>navigate("/login")}>Login</Button></div> */}
+          <button style={buttonStyle}  onClick={()=>navigate("/login")} >כניסה</button>
         </div>
       </div>
     );

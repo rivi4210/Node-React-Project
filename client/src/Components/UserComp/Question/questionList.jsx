@@ -8,7 +8,6 @@ import { RadioButton } from 'primereact/radiobutton';
 import { MdDirections } from 'react-icons/md';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import ShowMark from '../Exam/showMark';
-import MyAccount from '../User/myAccount';
 
 const QuestionList = () => {
     const { idLess } = useParams()

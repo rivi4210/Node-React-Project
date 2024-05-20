@@ -24,12 +24,7 @@ const LessoList = () => {
     const [formUpdate, setFormUpdate] = useState(false)
 
     const [_id, setId] = useState("")
-    // const [category, setCategory] = useState("")
-    // const [level, setLevel] = useState("")
-
     const [lesson, setLesson] = useState({})
-
-
     const [updatedLesson, { isErrorup, isSuccessup, errorup }] = useUpdateLessonMutation()
 
 
@@ -57,7 +52,6 @@ const LessoList = () => {
         updatedLesson({ _id, category: data.category, level: data.level })
         reset();
         setFormUpdate(false)
-        // navigate('/admin/learn')
     };
 
     const getFormErrorMessage = (name) => {
@@ -102,42 +96,5 @@ const LessoList = () => {
             </DataTable>
         </div>
     )
-
-
-    // const itemTemplate = (less, index) => {
-    // return (
-
-
-    // <div className="col-12" >
-    //     <div className={classNames('flex flex-column xl:flex-row xl:align-items-start p-4 gap-4', { 'border-top-1 surface-border': index !== 0 })}>
-    //         <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-    //             <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-    //                 <div className="text-2xl font-bold text-900">{less.category}</div>
-    //                 <div className="flex align-items-center gap-3">
-    //                     <span className="flex align-items-center gap-2">
-    //                         <span className="font-semibold">{less.level}</span>
-    //                     </span>
-    //                 </div>
-    //             </div>
-    //             <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2" align='right'>
-    //                <DeleteLesson _id={less._id}/>
-    //                <UpdateLesson less={less}/>
-    //                 <Button icon="pi pi-bars" className="p-button-rounded" onClick={() =>{navigate("/admin/listWordOfLesson/".concat(less._id),{ replace: false })}}></Button>
-    //                 <Button icon="pi pi-book" className="p-button-rounded" onClick={() =>{navigate("/admin/listQuestionOfLesson/".concat(less._id),{ replace: false })}}></Button>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>
-    // );
-    // };
-
-
-
-    // return (
-    //     <div className="card">
-    //         <div align='center'><Button label="Add lesson" text onClick={() => { navigate('/admin/addlesson') }} /></div>
-    //         <DataScroller value={lessons} itemTemplate={itemTemplate} rows={10000} inline scrollHeight="700px" />
-    //     </div>
-    // );
 };
 export default LessoList;

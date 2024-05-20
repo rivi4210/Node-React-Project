@@ -9,7 +9,7 @@ import 'primeflex/primeflex.css';
 import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import Home from './Components/UserComp/home';
-import LoginDemo from './Login_register/aaa';
+// import LoginDemo from './Login_register/aaa';
 import UserList from './Components/AdminComp/User/userList';
 import AdminHome from './Components/AdminComp/adminHome';
 import LessonList from './Components/AdminComp/Lesson/lessonList';
@@ -34,6 +34,7 @@ import MyAccount from './Components/UserComp/User/myAccount';
 import HomePage from './Components/homePage';
 import HomeAfterLogin from './Components/homeAfterLogin';
 import SignOut from './Components/UserComp/User/signOut';
+import Login from './Login_register/login';
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
     <Routes>
     //user comp
     <Route path='/' element={<HomePage />} />
-    <Route path='/login' element={<LoginDemo />} />
+    <Route path='/login' element={<Login />} />
     <Route path='/register' element={<Register />} />
     <Route path='/user' element={<Home />} >
     <Route path='/user/home' element={<HomeAfterLogin />} />
