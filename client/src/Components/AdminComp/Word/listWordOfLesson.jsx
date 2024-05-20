@@ -30,10 +30,6 @@ const ListWordOfLesson = () => {
     const navigate = useNavigate()
     const toast = useRef(null);
     const [_id, setId] = useState("")
-
-
-    console.log(_id)
-    // const toast = useRef(null);
     const [deleteWord, {  isSuccess }] = useDeleteWordMutation()
 
     useEffect(() => {
@@ -45,11 +41,6 @@ const ListWordOfLesson = () => {
     const accept = () => {
         deleteWord(_id)
     }
-
-    // const show = () => {
-    //     toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
-    // };
-
     const defaultValues = {
         _id: '',
         word: '',
@@ -65,9 +56,6 @@ const ListWordOfLesson = () => {
         reset
     } = useForm({ defaultValues });
 
-    // const getFormErrorMessage = (name) => {
-    //     return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
-    // };
     const {
         data: words,
         isLoading,

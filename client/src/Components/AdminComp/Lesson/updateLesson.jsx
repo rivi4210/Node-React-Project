@@ -112,8 +112,6 @@ const UpdateLesson = ({ less }) => {
 
                     <Button label="עדכן" type="submit" ></Button>
                     <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }} ></Button>
-
-
                 </div>
 
             </form>

@@ -38,7 +38,6 @@ const wordApiSlice = apiSlice.injectEndpoints({
                 url: "/word",
                 method: "PUT",
                 body: word
-                // headers:{"autorization":}
             }),
             invalidatesTags: ['Words']
         }),

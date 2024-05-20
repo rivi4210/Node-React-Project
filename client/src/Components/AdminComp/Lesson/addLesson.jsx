@@ -16,12 +16,6 @@ const AddLesson = () => {
     const navigate=useNavigate()
 
     const [addLesson, { isErrorAdd, isSuccessAdd, errorAdd }] = useAddLessonMutation()
-    // const handleAdd = (e) => {
-    //     console.log(e);
-    //     addLesson({})
-    //     claer()
-    // }
-
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
     };

@@ -24,12 +24,7 @@ const LessoList = () => {
     const [formUpdate, setFormUpdate] = useState(false)
 
     const [_id, setId] = useState("")
-    // const [category, setCategory] = useState("")
-    // const [level, setLevel] = useState("")
-
     const [lesson, setLesson] = useState({})
-
-
     const [updatedLesson, { isErrorup, isSuccessup, errorup }] = useUpdateLessonMutation()
 
 
@@ -57,7 +52,6 @@ const LessoList = () => {
         updatedLesson({ _id, category: data.category, level: data.level })
         reset();
         setFormUpdate(false)
-        // navigate('/admin/learn')
     };
 
     const getFormErrorMessage = (name) => {

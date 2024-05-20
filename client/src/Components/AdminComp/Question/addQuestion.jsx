@@ -21,11 +21,6 @@ const AddQuestion = () => {
     const navigate = useNavigate()
 
     const [addQuestion, { isErrorAdd, isSuccessAdd, errorAdd }] = useAddQestionMutation()
-    // const handleAdd = (e) => {
-    //     console.log(e);
-    //     addLesson({})
-    //     claer()
-    // }
     const handleFileChange = (event) => {
 
         setSelectedFile(event.target.files[0]);
@@ -62,12 +57,7 @@ const AddQuestion = () => {
         data.optional.push(data.option3)
         console.log('oppppptional',data);
         addQuestion(data)
-        // data=new FormData()
-
-
         data.level && show();
-        // console.log({ word: data.word, translating: data.translating, Img: data.Img, lesson: idLess });
-        // addWord({ word: data.word, translating: data.translating, Img: data.Img, lesson: idLess })
         reset();
         navigate('/admin/listQuestionOfLesson/'.concat(idLess))
     };
@@ -126,7 +116,6 @@ const AddQuestion = () => {
                                     <span className="p-float-label">
 
                                         <InputText placeholder='Option 1' id={field.name} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        {/* <label htmlFor={field.name}>Option 1</label> */}
                                     </span>
                                     {getFormErrorMessage(field.name)}</div></>)}
                     />
@@ -141,7 +130,6 @@ const AddQuestion = () => {
                                     <span className="p-float-label">
 
                                         <InputText placeholder='Option 2' id={field.name} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        {/* <label htmlFor={field.name}>Option 2</label> */}
                                     </span>
                                     {getFormErrorMessage(field.name)}</div></>)}
                     />

@@ -28,44 +28,11 @@ import UpdateUser from './updateUser';
 
 const UserList = () => {
 
-    // const [formUpdate, setFormUpdate] = useState(false)
-    // const [formAdd, setFormAdd] = useState(false)
-
-    // const [_id, setId] = useState("")
-    // const [name, setName] = useState("")
-    // const [username, setUsername] = useState("")
-    // const [password, setPassword] = useState("")
-    // const [phone, setPhone] = useState("")
-    // const [email, setEmail] = useState("")
-    // const [role, setRole] = useState('user')
-    // const [user, setUser] = useState({})
     const [searchParams, setSearchParams] = useSearchParams()
-    // const claer = () => {
-    //     setEmail("")
-    //     setPhone("")
-    //     setPassword("")
-    //     setUsername("")
-    //     setName("")
-    //     setRole("user")
-
-    // }
     const navigate = useNavigate()
     const q = searchParams.get("q")
     const toast = useRef(null);
     
-    // const [updatedUser, { isErrorup, isSuccessup, errorup }] = useUpdateUserMutation()
-    // const handleUpdate = (user) => {
-    //     console.log({ _id, name, username, password, phone, email, role })
-    //     updatedUser({ _id, name, username, password, phone, email, role })
-    //     claer()
-
-    // }
-    // const [addUser, { isErrorAdd, isSuccessAdd, errorAdd }] = useAddUserMutation()
-    // const handleAdd = () => {
-    //     console.log();
-    //     addUser({ _id, name, username, password, phone, email, role })
-    //     claer()
-    // }
 
     const sendToUpdate = (user) => {
         return <UpdateUser user={user} refetch={refetch}/>

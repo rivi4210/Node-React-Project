@@ -15,7 +15,6 @@ const DeleteUser = ({_id,refetch}) => {
         }
     }, [isSuccess])
     const accept = () => {
-        //  toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have deleted' });
         deleteUser(_id)
         refetch()
     }
