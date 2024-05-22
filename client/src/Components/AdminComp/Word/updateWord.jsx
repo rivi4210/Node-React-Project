@@ -6,6 +6,7 @@ import { classNames } from "primereact/utils";
 import { useEffect, useRef, useState } from "react";
 import { Controller, set, useForm } from "react-hook-form";
 import { useGetWordsByIdLessQuery, useUpdateWordMutation } from "./wordApiSlice";
+import { FileUpload } from 'primereact/fileupload';
 
 const UpdateWord = ({ w, refetch }) => {
     const toast = useRef(null);
@@ -72,6 +73,15 @@ const UpdateWord = ({ w, refetch }) => {
         return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
     };
 
+    const invoiceUploadHandler = ({ files }) => {
+        const [file] = files;
+        const fileReader = new FileReader();
+        
+        fileReader.readAsDataURL(file);
+        console.log('file', file);
+        setSelectedFile(file);
+    };
+
 
     return (<>
         <Button icon="pi pi-pencil" className="p-button-rounded" onClick={() => { setFormUpdate(true) }}></Button>
@@ -117,7 +127,27 @@ const UpdateWord = ({ w, refetch }) => {
                             </>
                         )}
                     />
-                    <Controller
+                     <Controller
+                        name="Img"
+                        type='file'
+                        control={control}
+                        render={({ field, fieldState }) => (
+                            <>
+                                <div></div><div></div>
+
+                                <FileUpload name="invoice"
+                                    accept="image/*"
+                                    customUpload={true}
+                                    uploadHandler={invoiceUploadHandler}
+                                    mode="basic"
+                                    auto={true}
+                                    chooseLabel="הוסף תמונה" />
+
+
+                            </>
+                        )}
+                    />
+                    {/* <Controller
                         name="Img"
                         type='file'
                         control={control}
@@ -128,7 +158,7 @@ const UpdateWord = ({ w, refetch }) => {
 
                             </>
                         )}
-                    />
+                    /> */}
 
                     <Button label="עדכן" type="submit" ></Button>
                     <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }} ></Button>

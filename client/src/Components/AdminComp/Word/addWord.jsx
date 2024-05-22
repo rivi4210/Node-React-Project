@@ -87,27 +87,11 @@ const AddWord = () => {
     const invoiceUploadHandler = ({ files }) => {
         const [file] = files;
         const fileReader = new FileReader();
-        // fileReader.onload = (e) => {
-        //     uploadInvoice(e.target.result);
-        // };
+        
         fileReader.readAsDataURL(file);
         console.log('file', file);
         setSelectedFile(file);
     };
-
-
-    // const uploadInvoice = async (invoiceFile) => {
-    //     let formData = new FormData();
-
-
-    //     // const response = await fetch(`orders/${orderId}/uploadInvoiceFile`,
-    //     //     {
-    //     //         method: 'POST',
-    //     //         body: formData
-    //     //     },
-    //     // );
-    // };
-
 
     return (
         <>
