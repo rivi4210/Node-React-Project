@@ -141,25 +141,11 @@ const UpdateWord = ({ w, refetch }) => {
                                     uploadHandler={invoiceUploadHandler}
                                     mode="basic"
                                     auto={true}
-                                    chooseLabel="הוסף תמונה" />
-
-
+                                    chooseLabel="החלף תמונה" />
                             </>
                         )}
                     />
-                    {/* <Controller
-                        name="Img"
-                        type='file'
-                        control={control}
-                        render={({ field, fieldState }) => (
-                            <>
-                                <div></div><div></div>
-                                <input type="file" name="Img" onChange={handleFileChange} />
-
-                            </>
-                        )}
-                    /> */}
-
+                  
                     <Button label="עדכן" type="submit" ></Button>
                     <Button label="ביטול" onClick={(e) => { setFormUpdate(false) }} ></Button>
 
