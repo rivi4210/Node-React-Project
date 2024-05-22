@@ -21,10 +21,10 @@ const AddWord = () => {
     const navigate = useNavigate()
 
     const [addWord, { isErrorAdd, isSuccessAdd, errorAdd }] = useAddWordMutation()
-    
+
     const handleFileChange = (event) => {
 
-        setSelectedFile(event.target.files[0]);
+
     };
 
     const show = () => {
@@ -50,7 +50,6 @@ const AddWord = () => {
     const onSubmit = (data) => {
 
         const formData = new FormData();
-        
         for (const value of formData.keys()) {
             console.log(value);
         }
@@ -69,6 +68,28 @@ const AddWord = () => {
     };
     const getFormErrorMessage = (name) => {
         return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
+    };
+    const customBase64Uploader = async (event) => {
+        setSelectedFile(event.target.files[0]);
+        console.log("yuuuyuyuyuyyyyyyyyyyy", event.target);
+        // convert file to base64 encoded
+        const file = event.files[0];
+        const reader = new FileReader();
+        let blob = await fetch(file.objectURL).then((r) => r.blob()); //blob:url
+
+        reader.readAsDataURL(blob);
+
+        reader.onloadend = function () {
+            const base64data = reader.result;
+        };
+    };
+    const invoiceUploadHandler = ({ files }) => {
+        const [file] = files;
+        const fileReader = new FileReader();
+        
+        fileReader.readAsDataURL(file);
+        console.log('file', file);
+        setSelectedFile(file);
     };
 
     return (
@@ -113,12 +134,20 @@ const AddWord = () => {
                         render={({ field, fieldState }) => (
                             <>
                                 <div></div><div></div>
-                                <input type="file" name="Img" onChange={handleFileChange} />
-                              
+
+                                <FileUpload name="invoice"
+                                    accept="image/*"
+                                    customUpload={true}
+                                    uploadHandler={invoiceUploadHandler}
+                                    mode="basic"
+                                    auto={true}
+                                    chooseLabel="הוסף תמונה" />
+
+
                             </>
                         )}
                     />
-                   
+
                     <Button label="הוסף מילה" type="submit" />
 
                 </div>
@@ -127,3 +156,9 @@ const AddWord = () => {
     )
 }
 export default AddWord
+
+
+
+
+
+
