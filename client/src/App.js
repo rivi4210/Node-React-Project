@@ -9,7 +9,6 @@ import 'primeflex/primeflex.css';
 import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import Home from './Components/UserComp/home';
-// import LoginDemo from './Login_register/aaa';
 import UserList from './Components/AdminComp/User/userList';
 import AdminHome from './Components/AdminComp/adminHome';
 import LessonList from './Components/AdminComp/Lesson/lessonList';
