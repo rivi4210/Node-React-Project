@@ -86,7 +86,6 @@ const AddWord = () => {
     const invoiceUploadHandler = ({ files }) => {
         const [file] = files;
         const fileReader = new FileReader();
-
         fileReader.readAsDataURL(file);
         console.log('file', file);
         setSelectedFile(file);
